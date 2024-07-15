@@ -1,0 +1,3 @@
+script_name,description
+showall,すべてのファイルの内容を表示する -d (depth)
+example-new-feature,これは例のコマンドの新機能スクリプトです

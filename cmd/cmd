@@ -1,0 +1,31 @@
+# ~/Documents/02_Code/sh-scripts/cmd/cmd
+#!/bin/zsh
+
+if [[ "$1" == "-h" ]]; then
+  if [[ ! -f ~/Documents/02_Code/sh-scripts/cmd/scripts.csv ]]; then
+    echo "No scripts.csv file found."
+    exit 1
+  fi
+
+  echo "Available scripts:"
+  while IFS=, read -r script_name description; do
+    if [[ "$script_name" != "script_name" ]]; then
+      echo "  $script_name - $description"
+    fi
+  done < ~/Documents/02_Code/sh-scripts/cmd/scripts.csv
+  exit 0
+fi
+
+if [[ -z "$1" ]]; then
+  echo "Please specify a script name."
+  exit 1
+fi
+
+SCRIPT_PATH=~/Documents/02_Code/sh-scripts/cmd/$1.sh
+
+if [[ ! -f "$SCRIPT_PATH" ]]; then
+  echo "Script '$1.sh' not found."
+  exit 1
+fi
+
+$SCRIPT_PATH "${@:2}"
